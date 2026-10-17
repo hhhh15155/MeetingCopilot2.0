@@ -1,0 +1,24 @@
+MeetingCopilot2.0
+Copyright 2026 goh
+
+本产品包含源自 MeetingCopilot 的软件。
+This product includes software developed as part of MeetingCopilot.
+
+  原项目 / Original project:
+    MeetingCopilot
+    https://github.com/JWM0203/MeetingCopilot
+    Copyright 2025 JWM0203
+    Licensed under the Apache License, Version 2.0
+
+  二次开发内容 / Modifications in this repository:
+    - RAG 检索引擎（中文切块、事实边界标注、外部 API embedding、
+      混合检索、索引与检索门面）—— electron/rag/
+    - 防幻觉提示词层（证据注入、分层兜底话术、多文档预算分配）—— electron/llm/prompts.ts
+    - 引用覆盖率审计 —— shared/citationAudit.ts
+    - 三槽多文档资料读写与旧格式迁移 —— shared/sessionMaterial.ts
+    - 中文 RAG 设置面板与依据展示 —— src/components/RagSettingsPanel.tsx,
+      src/components/RagEvidenceView.tsx
+    - 面试前自检 —— shared/readiness.ts
+
+完整许可证文本见 LICENSE 文件（Apache License, Version 2.0）。
+See the LICENSE file for the full license text (Apache License, Version 2.0).
