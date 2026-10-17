@@ -1,0 +1,57 @@
+{
+  "name": "meeting-copilot-2",
+  "version": "2.0.0",
+  "productName": "MeetingCopilot2.0",
+  "description": "MeetingCopilot 2.0 — 面试实时提词 + 外部 API embedding 的接地气 RAG：中文界面、问题提取、第一人称可念回答、事实边界标注与引用溯源",
+  "main": "./out/main/index.js",
+  "author": "goh (基于 JWM0203/MeetingCopilot 二次开发)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JWM0203/MeetingCopilot.git"
+  },
+  "//ATTRIBUTION": "本项目基于 MeetingCopilot (https://github.com/JWM0203/MeetingCopilot, Apache-2.0) 二次开发。原始版权与许可见 LICENSE 及 NOTICE。",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "postinstall": "patch-package",
+    "test": "vitest run",
+    "test:python": "node tools/run-python-tests.mjs",
+    "test:all": "npm test && npm run test:python",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "verify:patched": "node tools/verify-patched.mjs",
+    "dist:dir": "npm run build && npm run verify:patched && electron-builder --dir",
+    "dist:win": "npm run build && npm run verify:patched && electron-builder --win nsis portable --publish never",
+    "harness": "node tools/asr-harness.mjs",
+    "smoke:llm": "vite-node tools/llm-smoke.ts",
+    "smoke:asr:realtime": "node tools/rt-asr-smoke.mjs",
+    "smoke:e2e:llm": "node tools/e2e-llm.mjs",
+    "smoke:e2e:local": "node tools/e2e-local-lifecycle.mjs",
+    "smoke:packaged": "node tools/packaged-smoke.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.8.1",
+    "mammoth": "^1.12.0",
+    "pdf-parse": "^2.4.5",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/ws": "^8.5.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "41.1.1",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^3.1.0",
+    "patch-package": "^8.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "vitest": "^3.1.0"
+  }
+}
